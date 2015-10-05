@@ -3,6 +3,7 @@ docs/
 gulp/
 src/config.js
 src/lib/
+test/coverage
 .esdoc.json
 gulpfile.js
 karma.conf.js

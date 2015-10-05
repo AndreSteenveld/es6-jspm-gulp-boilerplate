@@ -44,13 +44,41 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        'src/js/**/*.js': ['babel', 'sourcemap', 'coverage'],
+        'test/**/*.test.js': ['babel']
+    },
+
+    babelPreprocessor: {
+        options: {
+            sourceMap: 'inline'
+        },
+        sourceFileName: function(file) {
+            return file.originalPath;
+        }
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['mocha'],
+    reporters: ['coverage', 'mocha'],
+
+    coverageReporter: {
+      instrumenters: { isparta: require('isparta') },
+      instrumenter: {
+        'src/app/**/*.js': 'isparta'
+      },
+      reporters: [
+        {
+          type: 'text-summary',
+          dir: 'test/coverage/'
+        },
+        {
+          type: 'html',
+          dir: 'test/coverage/'
+        }
+      ]
+    },
 
 
     // web server port

@@ -1,9 +1,12 @@
-# Debug.
+# Compiled css
+src/css/
+
+# Coverage reports
+test/coverage
+
+# Debug
 npm-debug.log
 
-# External libraries.
+# External libraries
 node_modules/
 src/lib/
-
-# Compiled css.
-src/css/
