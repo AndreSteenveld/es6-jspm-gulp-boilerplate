@@ -25,8 +25,10 @@ module.exports = function(config) {
       useBundles: true,
       config: 'src/config.js',
       loadFiles: [
-        'node_modules/phantomjs-polyfill/bind-polyfill.js', // necessary for PhantomJS (doesn't have Function.bind)
-        'test/**/*.js'
+        'test/**/*.js',
+
+        // necessary for PhantomJS (doesn't have Function.bind)
+        'node_modules/phantomjs-polyfill/bind-polyfill.js'
       ],
       serveFiles: ['src/js/**/*.js'],
       packages: 'src/lib'
@@ -37,8 +39,8 @@ module.exports = function(config) {
     },
 
     // list of files to exclude
-    exclude: [
-    ],
+    // exclude: [
+    // ],
 
 
     // preprocess matching files before serving them to the browser
@@ -64,18 +66,19 @@ module.exports = function(config) {
     reporters: ['coverage', 'mocha'],
 
     coverageReporter: {
+      dir: 'test/coverage/',
       instrumenters: { isparta: require('isparta') },
       instrumenter: {
         'src/app/**/*.js': 'isparta'
       },
       reporters: [
         {
-          type: 'text-summary',
-          dir: 'test/coverage/'
+          // Prints a coverage summary to console
+          type: 'text-summary'
         },
         {
-          type: 'html',
-          dir: 'test/coverage/'
+          // Creates an html report in the given directory
+          type: 'html'
         }
       ]
     },
